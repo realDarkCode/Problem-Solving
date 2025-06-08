@@ -2,82 +2,58 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "cppbuild",
-      "label": "C/C++: gcc.exe build active file",
-      "command": "C:\\msys64\\mingw64\\bin\\gcc.exe",
-      "args": [
-        "-fdiagnostics-color=always",
-
-        "-g",
-        "\"${file}\"",
-        "-o",
-        "\"${fileDirname}\\${fileBasenameNoExtension}.exe\""
-      ],
-      "options": {
-        "cwd": "${fileDirname}"
-      },
+      "label": "Build C++ File",
+      "type": "shell",
+      "command": "g++ ${file} -o ${workspaceFolder}/main",
+      "group": "build",
       "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": true
+      "presentation": {
+        "reveal": "always"
       },
-      "detail": "compiler: C:\\msys64\\mingw64\\bin\\gcc.exe"
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "when": "resourceExtname == .cpp"
     },
     {
+      "label": "Build C File",
       "type": "shell",
-      "label": "Compile and run Program",
-      "command": "gcc",
-      "args": [
-        "-g",
-        "\"${file}\"",
-        "-o",
-        "\"${fileDirname}\\${fileBasenameNoExtension}.exe\"",
-        "&&",
-        "\"${fileDirname}\\${fileBasenameNoExtension}.exe\""
-      ]
+      "command": "gcc ${file} -o ${workspaceFolder}/main",
+      "group": "build",
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "when": "resourceExtname == .c"
     },
     {
-      "label": "Single testCase",
+      "label": "Build and Run C++ File",
       "type": "shell",
-      "command": "",
-      "args": [
-        "copy",
-        "${file}",
-        "${workspaceFolder}\\tempRunner.c",
-        "&&",
-        "gcc",
-        "tempRunner.c",
-        "-o",
-        "tempRunner",
-        "&&",
-        "tempRunner",
-        "<",
-        "input.txt",
-        ">",
-        "output.txt",
-        "&&",
-        "del",
-        "tempRunner.exe",
-        "&&",
-        "del",
-        "tempRunner.c"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
+      "command": "g++ ${file} -o ${workspaceFolder}/main && ${workspaceFolder}/main",
+      "group": "test",
+      "presentation": {
+        "reveal": "always"
       },
-      "problemMatcher": {
-        "owner": "c",
-        "fileLocation": ["relative", "${workspaceRoot}"],
-        "pattern": {
-          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-          "file": 1,
-          "line": 2,
-          "column": 3,
-          "severity": 4,
-          "message": 5
-        }
-      }
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "when": "resourceExtname == .cpp"
+    },
+    {
+      "label": "Build and Run C File",
+      "type": "shell",
+      "command": "gcc ${file} -o ${workspaceFolder}/main && ${workspaceFolder}/main",
+      "group": "test",
+      "presentation": {
+        "reveal": "always"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "when": "resourceExtname == .c"
     }
   ]
 }
