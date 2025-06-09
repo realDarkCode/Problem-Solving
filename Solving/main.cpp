@@ -3,6 +3,37 @@ using namespace std;
 
 int main()
 {
+    int tc, v = 1, l;
+    cin >> tc;
+    int num[tc];
+    l = tc;
 
-    return 0;
+    while (tc > 0)
+    {
+
+        cin >> num[l - tc];
+        if (num[l - tc] > 0)
+        {
+            v *= num[l - tc];
+        }
+
+        tc--;
+    }
+
+    for (int i = 0; i < l; i++)
+    {
+        if (num[i] > 0)
+        {
+            cout << v / num[i];
+        }
+        else
+        {
+            cout << v;
+        }
+
+        if (i != l - 1)
+        {
+            cout << " ";
+        }
+    }
 }
