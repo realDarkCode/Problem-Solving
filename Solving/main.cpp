@@ -1,13 +1,15 @@
-// Toph - The Third Problem
+// Toph - Take It Easy
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 int main()
 {
-    int num[10], i = 0;
-    while (cin >> num[i])
-    {
-        i++;
-    }
-    cout << num[2] << endl;
+    int n;
+    cin >> n;
+    long long a, b, c, d;
+    a = ((n - 1) * (n - 2)) / 2;
+    b = n * n;
+    d = pow(2, n) + pow(3, n);
+    return 0;
 }
